@@ -1,19 +1,17 @@
 import React from "react";
-import ExpenseDate from "./CalendarElement/ExpenseDate";
 import "./ExpenseItem.css";
+import ExpenseItemsRender from "./ExpenseItemsRender/ExpenseItemsRender";
 
 const ExpenseItem = (props) => {
-  const expenseDate = new Date(2021, 2, 28);
-  const expenseTitle = "Car Insurance";
-  const expenseAmount = 2964.23;
+  const expenses = [
+    { date: new Date(2021, 2, 28), title: "Car Insurance", amount: 2964.3 },
+    { date: new Date(2021, 5, 12), title: "Credit Card", amount: 264.23 },
+    { date: new Date(2021, 6, 21), title: "Cellphone Plan", amount: 964.2 },
+  ];
 
   return (
-    <div className="expense-item">
-      <ExpenseDate date={props.date} />
-      <div className="expense-item__description">
-        <h2>{props.title}</h2>
-        <div className="expense-item__price"> ${props.amount} </div>
-      </div>
+    <div className="expenses">
+      <ExpenseItemsRender items={expenses}/>
     </div>
   );
 };
