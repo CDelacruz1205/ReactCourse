@@ -1,28 +1,30 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./ExpenseItem.css";
 import ExpenseItemsRender from "./ExpenseItemsRender/ExpenseItemsRender";
 import Card from "../Card/Card";
 import ExpenseFilter from "./ExpenseFilter/ExpenseFilter";
-import './ExpenseFilter/ExpenseFilter.css'
+import "./ExpenseFilter/ExpenseFilter.css";
+import ExpenseDate from "./ExpenseDate/ExpenseDate";
+
 const ExpenseItem = (props) => {
-
   const [filteredYear, setFilteredYear] = useState("2021");
+  const [title, setTitle] = useState(props.title);
 
-  const expenses = [
-    { date: new Date(2021, 2, 28), title: "Car Insurance", amount: 2964.13 },
-    { date: new Date(2021, 5, 12), title: "Credit Card", amount: 264.23 },
-    { date: new Date(2021, 6, 21), title: "Cellphone Plan", amount: 964.2 },
-  ];
-
-  const filterChangeHandler = (selectedYear) => {
-    setFilteredYear(selectedYear);
-  }
+  const clickHandler = () => {
+    setTitle("Title changed");
+  };
 
   return (
-    <Card className="expenses">
-      <ExpenseFilter selected={filteredYear} onChangeFilterYear={filterChangeHandler}/>
-      <ExpenseItemsRender items={expenses}/>
-    </Card>
+    <li>
+      <Card className="expense-item">
+        <ExpenseDate date={props.date} />
+        <div className="expense-item__description">
+          <h2>{props.title}</h2>
+          <div className="expense-item__price"> {"$" + props.amount} </div>
+        </div>
+        {/* <button onClick={clickHandler}>Change Title</button> */}
+      </Card>
+    </li>
   );
 };
 
